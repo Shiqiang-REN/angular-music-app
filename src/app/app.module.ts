@@ -1,18 +1,26 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+import {CoreModule} from './core/core.module'
+import {ShareModule} from "./share/share.module";
+import {AppRoutingModule} from "./app-routing.module";
+
+
+
+registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    BrowserModule,
+    CoreModule,
+  ],
+  exports: [
+    ShareModule,
     AppRoutingModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
