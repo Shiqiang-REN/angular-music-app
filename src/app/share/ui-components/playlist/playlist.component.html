@@ -1,6 +1,8 @@
 <ng-container >
-  <a class="cover">
-    <img [src]="SongPlaylist.picUrl" [alt]="SongPlaylist.name">
+  <a class="cover"  >
+    <img [src]="coverImg" [alt]="SongPlaylist.name"
+         (click)="goToPlaylistDetailsPage(SongPlaylist.id)"
+    >
     <div class="bottom">
       <div class="num">
         <i class="icon erji"></i>

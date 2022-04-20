@@ -13,8 +13,18 @@ export type HotTag = {
 export type SongPlaylist = {
   id: number;
   name: string;
+  userId: number;
   picUrl: string;
+  coverImgUrl:string;
+  tags:string[];
   playCount: number;
+  createTime: number;
+  creator: { nickname: string; avatarUrl: string; };
+  description: string;
+  subscribedCount: number;
+  shareCount: number;
+  commentCount: number;
+  subscribed: boolean;
   tracks: Song[];
 }
 
@@ -37,4 +47,14 @@ export type Song = {
 export type SongUrl = {
   id: number;
   url: string;
+}
+
+export type Lyric = {
+  lrc: string;
+  tlyric: string;
+}
+
+export type Playlists = {
+  playlists: SongPlaylist[];
+  total: number;
 }

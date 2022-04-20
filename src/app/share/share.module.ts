@@ -6,6 +6,7 @@ import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {UiComponentsModule} from "./ui-components/ui-components.module";
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -22,6 +23,5 @@ import {UiComponentsModule} from "./ui-components/ui-components.module";
     NzInputModule,
     UiComponentsModule,
   ],
-
 })
 export class ShareModule { }

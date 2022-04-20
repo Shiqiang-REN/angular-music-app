@@ -1,0 +1,32 @@
+<div class="playlist wrap feature-wrap">
+  <div class="list-r">
+    <div class="top">
+      <div class="cat">
+        <span>{{playlistParams.cat}}</span>
+      </div>
+      <nz-radio-group nzButtonStyle="solid"
+          [(ngModel)]="orderValue"
+          (ngModelChange)="onOrderValue($event)">
+        <label nz-radio-button nzValue="hot">Hot</label>
+        <label nz-radio-button nzValue="new">New</label>
+      </nz-radio-group>
+    </div>
+
+    <div class="list">
+      <app-playlist
+        class="sheet-item"
+        *ngFor="let SongPlaylist of playlists?.playlists"
+        [SongPlaylist]="SongPlaylist"
+        (onPlay)="onPlayPlaylist($event)">
+      </app-playlist>
+    </div>
+
+    <nz-pagination
+      class="pagination"
+      [nzPageSize]="playlistParams.limit"
+      [nzPageIndex]="playlistParams.offset"
+      [nzTotal]="playlists?.total"
+      (nzPageIndexChange)="onPageChange($event)">
+    </nz-pagination>
+  </div>
+</div>

@@ -3,6 +3,10 @@ import { HomeService} from "../../services/home.service";
 import {Banner, HotTag, SongPlaylist, Singer} from "../../services/types/common.types";
 import {SingersService} from "../../services/singers.service";
 import {PlaylistsService} from "../../services/playlists.service";
+import {AppStoreModule} from "../../store/app-store.module";
+import {Store} from "@ngrx/store";
+import {SetCurrentIndex, SetPlayList, SetSongList} from "../../store/actions/player.actions";
+import {PlayState} from "../../store/reducers/player.reducer";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +22,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private singerService:SingersService,
-    private playlistsService: PlaylistsService
+    private playlistsService: PlaylistsService,
+    private store$: Store<{player:PlayState}>
   ) {
     this.getBanners()
     this.getHotTags()
@@ -51,8 +56,10 @@ export class HomeComponent implements OnInit {
   onPlayPlaylist(id: number) {
     console.log('id :', id);
     this.playlistsService.playPlayList(id).subscribe(res => {
-      console.log('res :', res);
-    });
+      this.store$.dispatch(SetSongList({ songList: res }))
+      this.store$.dispatch(SetPlayList({ playList: res }))
+      this.store$.dispatch(SetCurrentIndex({ currentIndex: 0 }))
+    })
   }
 
   ngOnInit(): void {

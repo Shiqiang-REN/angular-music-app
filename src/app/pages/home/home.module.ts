@@ -4,6 +4,7 @@ import {ShareModule} from "../../share/share.module";
 import {NzCarouselModule} from "ng-zorro-antd/carousel";
 import {CommonModule} from "@angular/common";
 import { MemberCardComponent } from './components/member-card/member-card.component';
+import {RouterModule} from "@angular/router";
 
 
 
@@ -16,6 +17,7 @@ import { MemberCardComponent } from './components/member-card/member-card.compon
     ShareModule,
     NzCarouselModule,
     CommonModule,
+    RouterModule,
   ]
 })
 export class HomeModule { }

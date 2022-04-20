@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'angular_music_app';
+  title = 'angular_music_app'
+  menu = [{
+    label: 'Browse',
+    path: '/home'
+  }, {
+    label: 'Playlists',
+    path: '/playlists'
+  }]
 }

@@ -27,7 +27,7 @@ export class SingersService {
 
   getSingers(args: SingerParams = defaultParams): Observable<Singer[]> {
     const params = new HttpParams({ fromString: queryString.stringify(args) });
-    return this.http.get<{ artists: Singer[] }>( 'http://localhost:3000/artist/list', { params })
+    return this.http.get<{ artists: Singer[] }>( 'http://3.25.87.188:3000/artist/list', { params })
       .pipe(map(res => res.artists));
   }
 }
