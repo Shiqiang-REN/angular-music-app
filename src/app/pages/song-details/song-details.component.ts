@@ -35,15 +35,15 @@ export class SongDetailsComponent implements OnInit {
   ) {
     this.route.params.subscribe( params => {
       this.songId = params['id']
-    })
-    forkJoin([
-      this.songsService.getSongDetail(this.songId),
-      this.songsService.getLyric(Number(this.songId))
-    ]).pipe(first())
-      .subscribe(([song, lyric]) => {
-        this.song = song
-        // @ts-ignore
-        this.lyric = lyric.lrc.lyric
+      forkJoin([
+        this.songsService.getSongDetail(this.songId),
+        this.songsService.getLyric(Number(this.songId))
+      ]).pipe(first())
+        .subscribe(([song, lyric]) => {
+          this.song = song
+          // @ts-ignore
+          this.lyric = lyric.lrc.lyric
+        })
     })
   }
 
@@ -51,12 +51,12 @@ export class SongDetailsComponent implements OnInit {
     this.store$
       .pipe(select('player'), select(getCurrentSong), takeUntil(this.destroy$))
       .subscribe(song => {
-        // console.log('song :', song);
+        // console.log('song :', song)
         this.currentSong = song;
         // if (song) {
         //   this.currentIndex = findIndex(this.songPlaylist.tracks, song);
         // }else {
-        //   this.currentIndex = -1;
+        //   this.currentIndex = -1
         // }
       })
   }

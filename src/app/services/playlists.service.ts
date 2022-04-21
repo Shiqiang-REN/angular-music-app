@@ -41,6 +41,6 @@ export class PlaylistsService {
 
   getPlaylists(args: PlaylistParams): Observable<Playlists> {
     const params = new HttpParams({ fromString: queryString.stringify(args) });
-    return this.http.get( 'http://3.25.87.188:3000/top/playlist', { params }).pipe(map(res => res as Playlists));
+    return this.http.get( 'http://3.25.87.188:3000/top/playlist', { params }).pipe(map(res => res as Playlists))
   }
 }

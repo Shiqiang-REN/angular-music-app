@@ -9,8 +9,8 @@ import {Router} from "@angular/router";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlaylistComponent implements OnInit {
-  @Input() SongPlaylist: SongPlaylist;
-  @Output() onPlay = new EventEmitter<number>();
+  @Input() SongPlaylist: SongPlaylist
+  @Output() onPlay = new EventEmitter<number>()
   constructor(
     private router:Router
   ) { }
@@ -25,7 +25,7 @@ export class PlaylistComponent implements OnInit {
 
 
   get coverImg(): string {
-    return this.SongPlaylist.picUrl || this.SongPlaylist.coverImgUrl;
+    return this.SongPlaylist.picUrl || this.SongPlaylist.coverImgUrl
   }
 
   ngOnInit(): void {

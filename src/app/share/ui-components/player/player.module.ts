@@ -5,6 +5,7 @@ import {SliderModule} from "../slider/slider.module";
 import {FormatTimePipe} from "../../pipes/format-time.pipe";
 import {FormsModule} from "@angular/forms";
 import { PlaylistsModalComponent } from './playlists-modal/playlists-modal.component';
+import {NzModalService } from 'ng-zorro-antd/modal'
 
 
 
@@ -22,6 +23,7 @@ import { PlaylistsModalComponent } from './playlists-modal/playlists-modal.compo
   exports: [
     PlayerComponent,
     FormatTimePipe
-  ]
+  ],
+  providers:[{provide:NzModalService}]
 })
 export class PlayerModule { }

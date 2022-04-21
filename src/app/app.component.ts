@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {SearchService} from "./services/search.service";
+import {SearchResult} from "./services/types/common.types";
 
 @Component({
   selector: 'app-root',
@@ -14,4 +16,25 @@ export class AppComponent {
     label: 'Playlists',
     path: '/playlists'
   }]
+
+  searchResult: SearchResult
+
+  constructor(
+    private searchService:SearchService
+  ) {
+  }
+
+  onSearch(keywords: string) {
+    // console.log('keywords :', keywords);
+    if (keywords) {
+      this.searchService.search(keywords).subscribe(res => {
+        this.searchResult = res
+      })
+    }else {
+      this.searchResult = {}
+    }
+  }
+
+
+
 }

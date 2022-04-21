@@ -1,0 +1,8 @@
+<div class="search" #search>
+  <nz-input-group [nzSuffixIcon]="'search'">
+    <input type="text" #nzInput nz-input placeholder="Playlist/Song"
+      (blur)="onBlur()"
+      [(ngModel)]= "searchValue"
+    />
+  </nz-input-group>
+</div>

@@ -2,7 +2,7 @@
   <div class="g-wrap6">
     <div class="m-info clearfix">
       <div class="cover">
-        <img [src]="song.al.picUrl" [alt]="song.name">
+        <img [src]="song?.al?.picUrl" [alt]="song?.name">
         <div class="mask"></div>
       </div>
       <div class="cnt">
@@ -10,7 +10,7 @@
           <div class="hd clearfix">
             <i class="f-pr"></i>
             <div class="tit">
-              <h2 class="f-ff2 f-brk">{{song.name}}</h2>
+              <h2 class="f-ff2 f-brk">{{song?.name}}</h2>
             </div>
           </div>
 
@@ -18,7 +18,7 @@
             <div class="singers clearfix">
               <span>Artist：</span>
               <ul class="clearfix">
-                <li *ngFor="let singer of song.ar; last as isLast">
+                <li *ngFor="let singer of song?.ar; last as isLast">
                   <a [href]="'//music.163.com/artist?id=' + singer.id">{{singer.name}}</a>
                   <i [hidden]="isLast">/</i>
                 </li>
@@ -27,7 +27,7 @@
 
             <div class="al">
               <span>Album：</span>
-              <span class="al-name">{{song.al.name}}</span>
+              <span class="al-name">{{song?.al?.name}}</span>
             </div>
           </div>
 

@@ -7,9 +7,9 @@ export class PlayCountPipe implements PipeTransform {
 
   transform(value: number): number|string {
     if (value > 10000) {
-      return Math.floor(value / 1000) + 'k';
+      return Math.floor(value / 1000) + 'k'
     } else {
-      return value;
+      return value
     }
   }
 }

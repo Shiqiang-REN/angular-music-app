@@ -58,3 +58,10 @@ export type Playlists = {
   playlists: SongPlaylist[];
   total: number;
 }
+
+export type SearchResult = {
+  artists?: Singer[];
+  playlists?: SongPlaylist[];
+  songs?: Song[];
+}
+

@@ -4,7 +4,7 @@ import {select, Store} from "@ngrx/store";
 import {PlayState} from "./reducers/player.reducer";
 import {Song} from "../services/types/common.types";
 import {SetCurrentIndex, SetPlayList, SetSongList} from "./actions/player.actions";
-import {findIndex} from "rxjs/operators";
+
 
 @Injectable({
   providedIn: AppStoreModule
@@ -48,13 +48,13 @@ export class ActionsService {
 
   //insert all songs in the playlist to the player playlist
   insertSongs(songs: Song[]) {
-    const songList = this.playerState.songList.slice();
-    const playList = this.playerState.playList.slice();
+    const songList = this.playerState.songList.slice()
+    const playList = this.playerState.playList.slice()
     songs.forEach(song => {
       const pIndex = playList.findIndex(item => item.id === song.id )
       if (pIndex === -1) {
-        songList.push(song);
-        playList.push(song);
+        songList.push(song)
+        playList.push(song)
       }
     })
     this.store$.dispatch(SetSongList({ songList }))
@@ -62,6 +62,22 @@ export class ActionsService {
   }
 
   //delete one song from the player playlist
+  deleteSong(song: Song) {
+    const songList = this.playerState.songList.slice()
+    const playList = this.playerState.playList.slice()
+    let currentIndex = this.playerState.currentIndex
+    const sIndex = songList.findIndex(item => item.id === song.id)
+    songList.splice(sIndex, 1)
+    const pIndex = playList.findIndex(item => item.id === song.id)
+    playList.splice(pIndex, 1)
+    if (currentIndex > pIndex || currentIndex === playList.length) {
+      currentIndex--
+    }
+
+    this.store$.dispatch(SetSongList({ songList }));
+    this.store$.dispatch(SetPlayList({ playList }));
+    this.store$.dispatch(SetCurrentIndex({ currentIndex }));
+  }
 
   //delete all songs from the player playlist
   clearSongs() {
@@ -80,8 +96,8 @@ export class ActionsService {
     //   trueList = shuffle(list || []);
     //   trueIndex = findIndex(trueList, list[trueIndex]);
     // }
-    this.store$.dispatch(SetPlayList({ playList: trueList }));
-    this.store$.dispatch(SetCurrentIndex({ currentIndex: trueIndex }));
+    this.store$.dispatch(SetPlayList({ playList: trueList }))
+    this.store$.dispatch(SetCurrentIndex({ currentIndex: trueIndex }))
   }
 
 }

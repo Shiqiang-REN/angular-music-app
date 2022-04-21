@@ -19,15 +19,15 @@ export class PlaylistsComponent implements OnInit {
     offset: 1,
     limit: 35
   }
-  playlists: Playlists;
-  orderValue = 'hot';
+  playlists: Playlists
+  orderValue = 'hot'
 
   constructor(
     private route: ActivatedRoute,
     private playlistsService: PlaylistsService,
     private store$: Store<{player:PlayState}>
   ) {
-    this.playlistParams.cat = this.route.snapshot.queryParamMap.get('cat') || '全部';
+    this.playlistParams.cat = this.route.snapshot.queryParamMap.get('cat') || '全部'
     this.getPlaylists();
   }
 

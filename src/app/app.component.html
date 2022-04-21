@@ -9,14 +9,7 @@
           </ul>
         </div>
         <div class="right">
-          <div class="search">
-            <nz-input-group [nzSuffix]="suffixIconSearch">
-              <input type="text" nz-input placeholder="Song Name" />
-            </nz-input-group>
-            <ng-template #suffixIconSearch>
-              <i nz-icon type="search"></i>
-            </ng-template>
-          </div>
+          <app-search (onSearch)="onSearch($event)" [searchResult]="searchResult"></app-search>
         </div>
       </div>
     </nz-header>

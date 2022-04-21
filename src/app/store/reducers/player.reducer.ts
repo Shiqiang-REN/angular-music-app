@@ -15,7 +15,7 @@ export const initialState: PlayState = {
   playing: false,
   songList: [],
   playList: [],
-  playMode: { type: 'loop', label: '循环' },
+  playMode: { type: 'loop', label: 'loop' },
   currentIndex: -1
 }
 

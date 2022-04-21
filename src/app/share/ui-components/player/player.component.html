@@ -1,7 +1,4 @@
 <div class="m-player">
-  <div class="lock">
-    <div class="left"><i></i></div>
-  </div>
   <div class="hand"></div>
   <div class="container">
     <div class="wrap">
@@ -41,7 +38,7 @@
 <!--      </div>-->
       <div class="ctrl">
 <!--        <i class="volume" title="音量"></i>-->
-        <i class="loop" title="循环"></i>
+<!--        <i class="loop" title="循环"></i>-->
         <p class="open" (click)="toggleListPanel()">
           <span></span>
         </p>
@@ -51,7 +48,11 @@
         [currentSong]="currentSong"
         [currentIndex]="currentIndex"
         [show]="showPanel"
-        (onClose)="showPanel = false">
+        (onClose)="showPanel = false"
+        (onDeleteSong)="onDeleteSong($event)"
+        (onClearSong)="onClearSong()"
+        (toInfo)="toInfo($event)"
+      >
 <!--        (onChangeSong)="onChangeSong($event)"-->
 
       >
@@ -63,6 +64,7 @@
     [src]="currentSong?.url"
     (canplay)="onPlay()"
     (timeupdate)="onTimeUpdate($event)"
+    (ended)="onEnded()"
   >
   </audio>
 </div>

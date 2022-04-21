@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {PlaylistsService} from "../../services/playlists.service";
-import {findIndex, map, takeUntil} from "rxjs/operators";
+import { map, takeUntil} from "rxjs/operators";
 import {Song, SongPlaylist} from "../../services/types/common.types";
 import {select, Store} from "@ngrx/store";
 import {SongsService} from "../../services/songs.service";
@@ -30,7 +30,6 @@ export class PlaylistDetailsComponent implements OnInit, OnDestroy {
   currentSong: Song
   currentIndex = -1
   private destroy$ = new Subject<void>()
-  private playerState: PlayState
 
   constructor(
     private route: ActivatedRoute,
@@ -42,26 +41,26 @@ export class PlaylistDetailsComponent implements OnInit, OnDestroy {
   ) {
     this.route.params.subscribe( params => {
       this.playlistId = params['id']
-    })
-    this.playlistsService.getPlaylistDetail(this.playlistId)
-      .pipe(map(res => res)).subscribe(res => {
-      // console.log(res)
-      this.songPlaylist = res;
+      this.playlistsService.getPlaylistDetail(this.playlistId)
+        .pipe(map(res => res)).subscribe(res => {
+        // console.log(res)
+        this.songPlaylist = res
+      })
+      this.listenCurrent()
     })
 
-    this.listenCurrent()
   }
 
   private listenCurrent() {
     this.store$
       .pipe(select('player'), select(getCurrentSong), takeUntil(this.destroy$))
       .subscribe(song => {
-        // console.log('song :', song);
-        this.currentSong = song;
+        // console.log('song :', song)
+        this.currentSong = song
         // if (song) {
         //   this.currentIndex = findIndex(this.songPlaylist.tracks, song);
         // }else {
-        //   this.currentIndex = -1;
+        //   this.currentIndex = -1
         // }
       })
   }
@@ -72,9 +71,9 @@ export class PlaylistDetailsComponent implements OnInit, OnDestroy {
       this.songsService.getSongList(song)
         .subscribe(list => {
           if (list.length) {
-            this.actionsService.insertSong(list[0], isPlay);
+            this.actionsService.insertSong(list[0], isPlay)
           }else {
-            this.message.warning('Can not play! NO copyright!');
+            this.message.warning('Can not play! NO copyright!')
           }
           // console.log(list)
         })
@@ -85,12 +84,14 @@ export class PlaylistDetailsComponent implements OnInit, OnDestroy {
     this.songsService.getSongList(songs).subscribe(list => {
       if (list.length) {
         if (isPlay) {
-          this.actionsService.changePlayList({ list, index: 0 });
+          this.actionsService.changePlayList({ list, index: 0 })
         }else {
-          this.actionsService.insertSongs(list);
+          this.actionsService.insertSongs(list)
         }
+      }else{
+        this.message.warning('Can not play! NO copyright!')
       }
-    });
+    })
   }
 
 

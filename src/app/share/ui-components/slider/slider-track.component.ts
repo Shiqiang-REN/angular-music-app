@@ -9,7 +9,7 @@ export class SliderTrackComponent implements OnInit, OnChanges {
 
   @Input() sliderVertical = false
   @Input() length: number|null
-  @Input() buffer = false;
+  @Input() buffer = false
 
   style: SliderStyle = {}
 

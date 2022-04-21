@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Song} from "../../../../services/types/common.types";
 import {SongsService} from "../../../../services/songs.service";
+import {Store} from "@ngrx/store";
+import {PlayState} from "../../../../store/reducers/player.reducer";
+import {SetCurrentIndex} from "../../../../store/actions/player.actions";
 
 @Component({
   selector: 'app-playlists-modal',
@@ -15,23 +18,29 @@ export class PlaylistsModalComponent implements OnInit, OnChanges {
 
   @Output() onClose = new EventEmitter<void>()
   @Output() onChangeSong = new EventEmitter<Song>()
+  @Output() onDeleteSong = new EventEmitter<Song>()
+  @Output() onClearSong = new EventEmitter<void>()
+  @Output() toInfo = new EventEmitter<[string, number]>()
 
   lyric:string
 
   constructor(
+    private store$: Store<{player:PlayState}>,
     private songsService: SongsService
   ) { }
 
   ngOnInit() {
   }
 
+  //detect @input changes
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['songList']) {
-      // console.log('songList :', this.songList)
+
+
     }
     if (changes['currentSong']) {
-      this.updateLyric()
-      // console.log('currentSong :', this.currentSong)
+      if(this.currentSong)this.updateLyric()
+      else this.lyric = ''
     }
 
   }
@@ -40,7 +49,10 @@ export class PlaylistsModalComponent implements OnInit, OnChanges {
     this.songsService.getLyric(this.currentSong.id).subscribe(lyric => {
       // @ts-ignore
       this.lyric = lyric.lrc.lyric
-      console.log(this.lyric)
-    });
+    })
+  }
+
+  private updateCurrentIndex() {
+    this.currentIndex = this.songList.findIndex(item => item.id === this.currentSong.id)
   }
 }
