@@ -2,7 +2,7 @@
   <div class="g-wrap6">
     <div class="m-info clearfix">
       <div class="cover">
-        <img [src]="songPlaylist?.coverImgUrl" [alt]="songPlaylist?.name">
+        <img [src]="songPlaylist.coverImgUrl? songPlaylist.coverImgUrl:''" [alt]="songPlaylist?.name">
         <div class="mask"></div>
       </div>
       <div class="cnt">

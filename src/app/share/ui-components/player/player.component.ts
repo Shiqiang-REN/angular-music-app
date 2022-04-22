@@ -51,7 +51,7 @@ export class PlayerComponent implements OnInit {
     })
     appStore$.pipe(select(getCurrentIndex)).subscribe(index => {
       this.currentIndex = index
-      console.log(this.currentIndex)
+      // console.log(this.currentIndex)
     })
     appStore$.pipe(select(getCurrentSong)).subscribe(song => {
       if(song){

@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'playlist/:id', component: PlaylistDetailsComponent, data: { title: 'Playlist' } },
   { path: 'song/:id', component: SongDetailsComponent, data: { title: 'Song' } },
   { path: 'error', component: Error404Component, data: { title: 'error' } },
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({

@@ -22,7 +22,7 @@
                 <a *ngFor="let item of hotTags" routerLink="/playlists" [queryParams]="{cat: item.name}" >{{item.name}}</a>
               </nav>
             </div>
-            <a>
+            <a routerLink="/playlists">
               More
               <i nz-icon type="arrow-right" theme="outline"></i>
             </a>
@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="right">
-        <app-member-card></app-member-card>
+<!--        <app-member-card></app-member-card>-->
         <div class="settled-singer">
           <div class="tit"><b>Artists</b></div>
           <div class="list">
