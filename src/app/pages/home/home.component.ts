@@ -37,7 +37,24 @@ export class HomeComponent implements OnInit {
   }
   private getHotTags() {
     this.homeService.getHotTags().subscribe(tags => {
-      this.hotTags = tags
+      this.hotTags = HomeComponent.modifyHotTags(tags)
+    })
+  }
+
+  private static modifyHotTags(hotTags:HotTag[]):HotTag[]{
+    return hotTags.map((hotTag: HotTag) => {
+      if (hotTag.name === '华语') {
+        hotTag.name = 'Asian'
+      }else if (hotTag.name === '流行'){
+        hotTag.name = 'Pop'
+      }else if (hotTag.name === '民谣'){
+        hotTag.name = 'Country'
+      }else if (hotTag.name === '电子'){
+        hotTag.name = 'Dance'
+      }else{
+        hotTag.name = 'Rock'
+      }
+      return hotTag;
     })
   }
 

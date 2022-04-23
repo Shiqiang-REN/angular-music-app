@@ -176,6 +176,16 @@ export class PlayerComponent implements OnInit {
     }
   }
 
+  onChangeSong(song: Song) {
+    this.updateCurrentIndex(this.playList, song);
+  }
+
+  private updateCurrentIndex(list: Song[], song: Song) {
+    const newIndex = list.findIndex(item => item.id === song.id )
+    this.store$.dispatch(SetCurrentIndex({ currentIndex: newIndex }));
+  }
+
+
 
   ngOnInit(): void {
     this.audioEl = this.audio.nativeElement;
